@@ -4,11 +4,7 @@ import { AsyncSource } from "./async-source";
  *  Google source impelementation.
  *  Fetch avatar source based on google identifier
  *  and image size
- *
- * @export
- * @class Google
- * @implements {AsyncSource}
- */
+  */
 export class Google extends AsyncSource {
     readonly sourceType = "GOOGLE";
 
@@ -23,10 +19,6 @@ export class Google extends AsyncSource {
 
     /**
      * Extract google avatar from json data
-     *
-     * @param {*} data
-     * @returns
-     * @memberof Google
      */
     processResponse(data: any, size?: number) {
         const avatarSrc = data.entry.gphoto$thumbnail.$t;

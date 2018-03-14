@@ -3,10 +3,6 @@ import { Source } from "./source";
 /**
  *  Initials source impelementation.
  *  return the initals of the given value
- *
- * @export
- * @class Value
- * @implements {Source}
  */
 export class Initials implements Source {
   readonly sourceType: string = "INITIALS";

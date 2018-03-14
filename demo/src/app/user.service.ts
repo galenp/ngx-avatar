@@ -6,9 +6,6 @@ import { User } from "./user.model";
 
 /**
  * Service used to fecth Async informations about the user
- * 
- * @export
- * @class AppService
  */
 @Injectable()
 export class UserService {
@@ -25,5 +22,5 @@ export class UserService {
     }
 
 
-    
+
 }

@@ -17,9 +17,6 @@ import { SourceCreator } from "./source.creator";
  * Factory class that implements factory method pattern.
  * Used to create Source implementation class based
  * on the source Type
- * 
- * @export
- * @class SourceFactory
  */
 @Injectable()
 export class SourceFactory {
