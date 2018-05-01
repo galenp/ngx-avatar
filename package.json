@@ -8,7 +8,7 @@
     "docs:build": "compodoc -p tsconfig.json -n ngx-avatar -d docs --hideGenerator",
     "docs:serve": "npm run docs:build -- -s",
     "docs:watch": "npm run docs:build -- -s -w",
-    "lint": "tslint --type-check --project tsconfig.json src/**/*.ts"
+    "lint": "tslint --project tsconfig.json src/**/*.ts"
   },
   "repository": {
     "type": "git",
@@ -26,11 +26,11 @@
     "url": "https://github.com/HaithemMosbahi/ngx-avatar/issues"
   },
   "devDependencies": {
+    "@angular/cli": "^1.7.3",
     "@angular/common": "^5.2.8",
     "@angular/compiler": "^5.2.8",
     "@angular/compiler-cli": "^5.2.8",
     "@angular/core": "^5.2.8",
-    "@angular/http": "^5.2.8",
     "@angular/platform-browser": "^5.2.8",
     "@angular/platform-browser-dynamic": "^5.2.8",
     "@compodoc/compodoc": "^1.0.9",
