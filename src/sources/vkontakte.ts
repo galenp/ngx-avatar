@@ -4,10 +4,6 @@ import { AsyncSource } from "./async-source";
  *  Vkontakte source impelementation.
  *  Fetch avatar source based on vkontakte identifier
  *  and image size
- * 
- * @export
- * @class Google
- * @implements {AsyncSource}
  */
 const apiVersion = 5.8;
 export class Vkontakte extends AsyncSource {
@@ -24,7 +20,7 @@ export class Vkontakte extends AsyncSource {
 
     /**
      * Returns image size related to vkontakte API
-     * @param size 
+     * @param size
      */
     _getImageSize(size: number) {
         if (size <= 50)
@@ -41,10 +37,6 @@ export class Vkontakte extends AsyncSource {
 
     /**
      * extract vkontakte avatar from json data
-     *
-     * @param {*} data
-     * @returns
-     * @memberof Vkontakte
      */
     processResponse(data: any) {
         // avatar key property is the size used to generate avatar url

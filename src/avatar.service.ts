@@ -1,9 +1,11 @@
-import { AVATAR_CONFIG } from './avatar-config.token';
-import { AvatarConfig } from './avatar-config';
-import { Injectable,Inject,Optional } from '@angular/core';
-import { Http } from "@angular/http";
-import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
+
+import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable, Optional } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { AvatarConfig } from './avatar-config';
+import { AVATAR_CONFIG } from './avatar-config.token';
 
 
 
@@ -42,23 +44,23 @@ const defaultColors = [
 @Injectable()
 export class AvatarService {
 
-    private _avatarColors:string[];
+    private _avatarColors: string[];
 
-    constructor(@Optional() @Inject(AVATAR_CONFIG) private avatarConfig:AvatarConfig,
-                private http: Http) { 
+    constructor(@Optional() @Inject(AVATAR_CONFIG) private avatarConfig: AvatarConfig,
+        private http: HttpClient) {
     }
 
     /**
-    * Get a random color. 
+    * Get a random color.
     * The color is based on the ascii code of the given value.
     * This will guarantee that avatars with the same value
     * will have the same background color
-    * 
-    * @returns {string} 
+    *
     */
     getRandomColor(value: string): string {
-        if (!value)
+        if (!value) {
             return 'transparent';
+        }
         const asciiCodeSum = this._calculateAsciiCode(value);
         const colors = this.getAvatarColors();
         return colors[asciiCodeSum % colors.length];
@@ -66,41 +68,38 @@ export class AvatarService {
 
     /**
      * Returns the list of supported avatar sources.
-     * 
-     * @returns {string[]}
+     *
      */
-    getSources():string[] {
+    getSources(): string[] {
         return sources;
     }
 
     /**
      * Returns the list of defaul colors.
-     * 
-     * @returns {string[]}
+     *
      */
-    getDefaultColors():string[] {
-      return defaultColors;
+    getDefaultColors(): string[] {
+        return defaultColors;
     }
 
     /**
      * Returns a set of colors that will be used to fill the background color
-     * of text avatars. If the user has provided a list of colors, Then this list 
+     * of text avatars. If the user has provided a list of colors, Then this list
      * will be returned. Otherwise, the default colors will be used.
-     * 
-     * @returns {string[]}
+     *
      */
-    getAvatarColors():string[] {
-       if(this.avatarConfig && this.avatarConfig.avatarColors && this.avatarConfig.avatarColors.length > 0){
-           return this.avatarConfig.avatarColors;
-       }
-       return this.getDefaultColors();
+    getAvatarColors(): string[] {
+        if (this.avatarConfig && this.avatarConfig.avatarColors && this.avatarConfig.avatarColors.length > 0) {
+            return this.avatarConfig.avatarColors;
+        }
+        return this.getDefaultColors();
     }
 
     /**
-    * Get source priority 
-    * Facebook has the highest priority, Value has the lowest 
-    * @param source 
-    * @param avatarSources 
+    * Get source priority
+    * Facebook has the highest priority, Value has the lowest
+    * @param source
+    * @param avatarSources
     */
     getSourcePriority(source: string, avatarSources = sources) {
         return sources.indexOf(source.toUpperCase());
@@ -108,10 +107,9 @@ export class AvatarService {
 
     /**
      * Check if the given source is a valid avatar source or not.
-     * 
+     *
      * @export
-     * @param {string} source 
-     * @returns {boolean} 
+     * @param source
      */
     isSource(source: string): boolean {
         return sources.findIndex((item) => item === source.toUpperCase()) > -1;
@@ -120,7 +118,7 @@ export class AvatarService {
 
     /**
      * return the sum of ascii code of the given string
-     * @param value 
+     * @param value
      */
     _calculateAsciiCode(value: string) {
         return value.split('').map(letter => letter.charCodeAt(0))
@@ -129,10 +127,9 @@ export class AvatarService {
 
     /**
      * Check wether the type of avatar is text or not.
-     * 
+     *
      * @export
-     * @param {string} sourceType 
-     * @returns {boolean} 
+     * @param sourceType
      */
     isTextAvatar(sourceType: string): boolean {
         return ["INITIALS", "VALUE"].indexOf(sourceType) > -1;
@@ -141,11 +138,9 @@ export class AvatarService {
 
     /**
      * Retuns an Observable which is responisble of fetching async avatars
-     * @param {avatarUrl} url of the avatar
-     * @return {Observable} of json data
+     * @param url of the avatar
      */
-    fetchAvatar(avatarUrl:string):Observable<any>{
-       return this.http.get(avatarUrl).map(response => response.json());
+    fetchAvatar(avatarUrl: string): Observable<any> {
+        return this.http.get(avatarUrl);
     }
-
 }

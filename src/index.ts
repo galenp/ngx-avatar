@@ -3,7 +3,6 @@ import { AvatarConfig } from './avatar-config';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AvatarComponent } from './avatar.component';
-import { HttpModule } from "@angular/http";
 import { SourceFactory } from "./sources/source.factory";
 import { AVATAR_CONFIG } from "./avatar-config.token";
 export * from './avatar.component';
@@ -17,22 +16,21 @@ export * from "./avatar-config.token";
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule
   ],
   declarations: [
     AvatarComponent
   ],
-  providers: [SourceFactory,AvatarService],
+  providers: [SourceFactory, AvatarService],
   exports: [
     AvatarComponent
   ]
 
 })
 export class AvatarModule {
-  static forRoot(avatarConfig:AvatarConfig):ModuleWithProviders{
+  static forRoot(avatarConfig: AvatarConfig): ModuleWithProviders {
     return {
       ngModule: AvatarModule,
-      providers:[{provide:AVATAR_CONFIG,useValue: avatarConfig}]
+      providers: [{ provide: AVATAR_CONFIG, useValue: avatarConfig }]
     }
   }
- }
+}

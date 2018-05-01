@@ -1,29 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { User } from "./user.model";
 
 /**
  * Service used to fecth Async informations about the user
- * 
- * @export
- * @class AppService
  */
 @Injectable()
 export class UserService {
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
-    fetchInformations():Observable<User>{
-        return this.http.get("assets/data/data.json")
-                        .map(response => response.json() as User);
+    fetchInformations(): Observable<User> {
+        return this.http.get<User>("assets/data/data.json");
     }
 
-    getUserFacebook():Observable<string>{
-       return this.http.get("assets/data/data.json")
-                        .map(response => response.json().facebookId);
+    getUserFacebook(): Observable<string> {
+        return this.http.get<User>("assets/data/data.json")
+            .map(response => response.facebookId);
     }
-
-
-    
 }

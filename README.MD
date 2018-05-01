@@ -27,7 +27,7 @@ Moreover, the component can shows name initials or simple value as avatar.
  The fallback system uses the same order as the above source list, Facebook has the highest priority, if it fails, google source will be used, and so on.
 
  If you enjoy watching videos, check out this [tutorial](https://medium.com/letsboot/lets-play-with-ngx-avatar-ec585dc39161) on medium which explains how to use ngx-avatar in your angular application.
- 
+
  Check out this [link](https://stackblitz.com/edit/ngx-avatar-demo) to play with ngx-avatar :grinning:
 
 ## Installation
@@ -92,7 +92,7 @@ Once the AvatarModule is imported, you can start using the component in your Ang
 <ngx-avatar facebookId="userFacebookID" skypeId="userSkypeID"
  googleId="google" name="Haithem Mosbahi" src="assets/avatar.jpg"
  value="28%"  twitterId="twitter"
- gravatarId="adde9b2b981a8083cf084c63ad86f753" 
+ gravatarId="adde9b2b981a8083cf084c63ad86f753"
  size="100" [round]="true">
 </ngx-avatar>
 
@@ -123,7 +123,7 @@ $ ng serve
 | `vkontakteId`   | *string*             |         | VK ID|
 | `skypeId`    | *string*          |       |  Skype ID                                                                                                      |
 | `gravatarId`    | *string*          |         | email or md5 email related to gravatar                                                                                                  |
-| `githubId`    | *string*          |         | Github ID                                                                                      
+| `githubId`    | *string*          |         | Github ID
 | `src`         | *string*          |         | Fallback image to use                                                                                  |
 | `name`        | *string*          |         | Will be used to generate avatar based on the initials of the person                                    |
 | `value`       | *string*          |         | Show a value as avatar                                                                                 |
@@ -146,7 +146,7 @@ $ ng serve
 ## Override Avatar Configuration
 The avatar module provides the possibility of customizing the avatar component by overriding some of its options. For example, the avatar module comes with a set of default colors used to randomly fill the backgroud color of the avatar. Thus, it's possible to chnage the default list of colors and to pass your own list.
 
-All you need to do is to configure the AvatarModule by calling **forRoot** method. The forRoot method takes an AvatarConfig Object that contains the overridden options. 
+All you need to do is to configure the AvatarModule by calling **forRoot** method. The forRoot method takes an AvatarConfig Object that contains the overridden options.
 
 At this moment, the AvatarConfig object has one parameter which is the avatarColors. In future releases, we will probably enrich this object to override more options ( such as the source priority )
 
@@ -159,7 +159,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { UserService } from "./user.service";
 import { AvatarModule,AvatarConfig } from "ngx-avatar";
-import { HttpModule } from "@angular/http";
 
 const avatarConfig = new AvatarConfig(['red','blue','pink']);
 
@@ -185,14 +184,14 @@ export class AppModule { }
  In addition to the style attribute, ngx-avatar style can be customized using css classes. Thus, the generated code offers two css classes that can be overridden :
  * **avatar-container** : class that represents the avatar container - the host element. Styles in this class will be applied on the avatar wether is an image or text.
  * **avatar-content** : css class that represents the avatar element which is embedded inside the avatar-container.
- 
- To overcome Angular's view encapsulation, you may need to use the /deep/ operator to target it. Here's an example that shows how to override ngx-avatar style : 
- 
+
+ To overcome Angular's view encapsulation, you may need to use the /deep/ operator to target it. Here's an example that shows how to override ngx-avatar style :
+
  ```html
    <ngx-avatar class="my-avatar" value="HM"> </ngx-avatar>
  ```
- Your css file might look like this 
- 
+ Your css file might look like this
+
  ```css
  .my-avatar /deep/ .avatar-content {
      background-color : red !important;

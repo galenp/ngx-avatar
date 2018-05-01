@@ -12,10 +12,6 @@ import { AvatarService } from './avatar.service';
 /**
  * Universal avatar component that
  * generates avatar from different sources
- * 
- * @export 
- * @class AvatarComponent
- * @implements {OnInit} 
  */
 
 @Component({
@@ -35,7 +31,7 @@ import { AvatarService } from './avatar.service';
       (error)="fetch($event)"
       class="avatar-content"
      />
-   
+
    <div *ngIf="data && !src"
      [ngStyle]="avatarStyle"
      class="avatar-content">{{data}}</div>
@@ -61,8 +57,8 @@ export class AvatarComponent implements OnChanges {
   @Input('src') custom: string;
   @Input('name') initials: string;
   @Input('value') value: string;
-  @Input('placeholder') placeholder: string; 
-  @Input('initialsSize') initialsSize: number;    
+  @Input('placeholder') placeholder: string;
+  @Input('initialsSize') initialsSize: number;
   @Output() clickOnAvatar: EventEmitter<any> = new EventEmitter<any>();
 
   _currentSource: number = 0;
@@ -85,9 +81,9 @@ export class AvatarComponent implements OnChanges {
 
   /**
    * Detect inputs change
-   * 
-   * @param {{ [propKey: string]: SimpleChange }} changes 
-   * 
+   *
+   * @param changes
+   *
    * @memberof AvatarComponent
    */
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
@@ -114,7 +110,7 @@ export class AvatarComponent implements OnChanges {
       this._sources.sort((leftSide, rightSide) => {
         return this.avatarService.getSourcePriority(leftSide.sourceId) - this.avatarService.getSourcePriority(rightSide.sourceId);
       });
-      // Host style 
+      // Host style
       this.hostStyle = {
         width: this.size + 'px',
         height: this.size + 'px'
@@ -126,9 +122,9 @@ export class AvatarComponent implements OnChanges {
 
   /**
    * Fetch avatar source
-   * 
-   * @param {any} event 
-   * 
+   *
+   * @param event
+   *
    * @memberOf AvatarComponent
    */
   fetch(event?: any) {
@@ -151,12 +147,6 @@ export class AvatarComponent implements OnChanges {
 
   }
 
-  /**
-   * 
-   * @returns initials style
-   * 
-   * @memberOf AvatarComponent
-   */
   _initialsStyle(avatarValue: string) {
     return {
       textAlign: 'center',
@@ -172,12 +162,7 @@ export class AvatarComponent implements OnChanges {
 
   }
 
-  /**
-   * 
-   * @returns image style
-   * 
-   * @memberOf AvatarComponent
-   */
+
   _imageStyle() {
     return {
       maxWidth: '100%',
@@ -190,8 +175,8 @@ export class AvatarComponent implements OnChanges {
   }
   /**
    * Fetch avatar image asynchrounsly.
-   * 
-   * @param {Source} source represents avatar source
+   *
+   * @param source represents avatar source
    * @memberof AvatarComponent
    */
   _fetchAsyncAvatar(source: AsyncSource) {
@@ -203,12 +188,12 @@ export class AvatarComponent implements OnChanges {
         console.error(`ngx-avatar: error while fetching ${source.sourceType} avatar `);
       });
   }
-  
+
 
 
   /**
    * Add avatar source
-   * 
+   *
    * @param sourceType avatar source type e.g facebook,twitter, etc.
    * @param sourceValue  source value e.g facebookId value, etc.
    */
@@ -226,10 +211,10 @@ export class AvatarComponent implements OnChanges {
    * paramater.
    * It returns true if the source exists and update has been performed,
    * returns false if the source was not found
-   * 
-   * @param {string} sourceType the type of the source
-   * @param {string} sourceValue the new value of the source 
-   * 
+   *
+   * @param sourceType the type of the source
+   * @param sourceValue the new value of the source
+   *
    * @memberof AvatarComponent
    */
   _updateExistingSource(sourceType: string, sourceValue: string) {

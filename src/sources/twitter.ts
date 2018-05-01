@@ -4,10 +4,6 @@ import { Source } from "./source";
  *  Twitter source impelementation.
  *  Fetch avatar source based on google identifier
  *  and image size
- * 
- * @export
- * @class Twitter
- * @implements {Source}
  */
 export class Twitter implements Source {
     readonly sourceType: string = "TWITTER";
@@ -18,7 +14,7 @@ export class Twitter implements Source {
         let twitterImgSize = this._getImageSize(size);
         return `https://twitter.com/${this.sourceId}/profile_image?size=${twitterImgSize}`;
     }
-     
+
     _getImageSize(size:number){
         if (size <= 24)
             return 'mini';
